@@ -1,1 +1,3 @@
-Wash clothesGo to store
+Wash clothesGo to storeWorkFinish gameTODO_list
+
+Finish

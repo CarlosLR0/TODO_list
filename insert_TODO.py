@@ -8,8 +8,8 @@ with open("TODO_list.txt", "a") as fl:
     # Now, 'fl' is the reference of the command 'open("TODO_list.txt", "w")'
     # The file will write the username that it got
     # at the first part
+	fl.write('\n')
 	fl.write(TODO_list)
-
     
     # Now, the program done the adding, you should close them
 	fl.close()
