@@ -1,0 +1,10 @@
+# Like Wumi, this opens the file, except
+# now it's in read mode.
+with open("TODO_list.txt", "r") as fl:
+    # This stores the contents of the file in a variable
+    data = fl.read()
+    
+    print(data)
+    # IIRC you don't actually need to close
+    # the file, as the `with` block does it
+    # for you.
