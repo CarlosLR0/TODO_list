@@ -2,7 +2,7 @@ print("\nMy TODO_list")
 instructions = "\nOptions: \n-Enter a to add new task. \n-Enter c to mark item as completed. \n-Enter d to delete items. \n-Enter v to view list. \n-Enter e to exit "
 print(instructions)
 
-todo_list = list()
+todo_list = []
 
 i = True
 
@@ -11,7 +11,7 @@ while i:
 
     if user_in == 'a':
         task = input("Type the new task: ").lower()
-        todo_list.append(task)
+        todo_list.append([task])
         print("Added new task: ", task)
 
     elif user_in == 'c':
@@ -41,4 +41,11 @@ while i:
         if exit_in == 'y':
             print("Good Bye")
             i = False
-        
+
+    elif user_in == 's':
+        save_in = input("Are you sure you want to save? (Y/N: ")
+        if save_in == 'y':
+            with open("TODO_list.txt", newline='\n', mode='w') as fl:
+                fl.write('\n'.join(str(e) for e in todo_list))
+                fl.close()
+                print("Current list has been saved")
