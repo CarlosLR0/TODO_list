@@ -21,6 +21,14 @@ while i:
         c = ("completed")
         todo_list[int_list_item] = todo_list[int_list_item], c
         print(todo_list[int_list_item])
+
+    elif user_in == 'd':
+        print("Current list")
+        for task in range(len(todo_list)):
+            print(task,end = ". ")
+            print(todo_list[task])
+        del_task_index = int(input("Which index do you want to delete? "))
+        print("You have deleted",todo_list.pop(del_task_index))
         
     elif user_in == 'v':
         print("Current list")
