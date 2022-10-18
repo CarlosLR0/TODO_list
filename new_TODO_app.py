@@ -24,7 +24,9 @@ while i:
         
     elif user_in == 'v':
         print("Current list")
-        print(todo_list)
+        for task in range(len(todo_list)):
+           print(task,end =". ")
+           print(todo_list[task])
             
     elif user_in == 'e':
         exit_in = input("\nDo you want to exit? (Y/N): ").lower()
