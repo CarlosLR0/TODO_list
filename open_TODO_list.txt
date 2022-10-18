@@ -1,0 +1,10 @@
+# This opens the file, except
+# now it's in read mode.
+with open("TODO_list.txt", mode="r+") as fl:
+    # This stores the contents of the file in a variable
+	data = fl.read()
+    
+print(data)
+    # You don't actually need to close
+    # the file, as the `with` block does it
+    # for you.

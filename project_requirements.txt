@@ -1,0 +1,15 @@
+TODO Application
+
+Main goals:
+-TUI, REPL.
+-Add, list tasks, able to delete completed task.
+-Persist across runs? stores previous data?
+-Every user gets their own list.
+-Editable storage format?
+-All tasks will be entered by the user.
+-User friendly, no memorization (no complicated commands to work with?).
+-Auto recall or prompt recall.
+-Report total # of tasks.
+
+Stretch goals:
+-Timestamps with optional display
