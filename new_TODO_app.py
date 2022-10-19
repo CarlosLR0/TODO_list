@@ -1,3 +1,7 @@
+print("Welcome\nPLease enter your name:")
+name = input()
+
+
 print("\nMy TODO_list")
 instructions = "\nOptions: \n-Enter a to add new task. \n-Enter c to mark item as completed. \n-Enter d to delete items. \n-Enter e to exit. \n-Enter l to load saved list. \n-Enter s to save current list. \n-Enter v to view list. "
 print(instructions)
@@ -17,8 +21,8 @@ while i:
     elif user_in == 'c':
        try:
            int_list_item = int(input("\nWhich index do you want to mark as completed? "))
-           c = ("completed")
-           todo_list[int_list_item] = todo_list[int_list_item], c
+           c = (" completed")
+           todo_list[int_list_item] = todo_list[int_list_item] + c
            print(todo_list[int_list_item])
 
        except IndexError:
@@ -55,7 +59,7 @@ while i:
     elif user_in == 's':
         save_in = input("\nAre you sure you want to save? (y/n): ")
         if save_in == 'y':
-            with open("TODO_list.txt", newline='\n', mode='w') as fl:
+            with open(name + ".txt", newline='\n', mode='w') as fl:
                 fl.write('\n'.join(str(e) for e in todo_list))
                 fl.close()
                 print("Current list has been saved")
@@ -65,7 +69,7 @@ while i:
         load_in = input('Do you want to load your saved list? (y/n): ')
         if load_in == 'y':
             
-            a = open("TODO_list.txt", mode='r')
+            a = open(name + ".txt", mode='r')
             b = a.readlines()
             todo_list = [x.replace('\n','') for x in b]
             print("Loaded saved list:")
