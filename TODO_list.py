@@ -1,7 +1,8 @@
+from rich import print
 import os
 from os import system
 
-print("\nWelcome to My TODO_list")
+print("[italic blue]\nWelcome to My TODO_list")
 user = os.path.expanduser('~/TODO_list')
 
 instructions = "\nOptions: \n-Enter a to add new task. \n-Enter c to mark item as completed. \n-Enter d to delete items. \n-Enter q to quit. "
