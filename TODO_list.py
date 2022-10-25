@@ -1,12 +1,15 @@
 from rich import print
+from rich.console import Console
+from rich.text import Text
 import os
 from os import system
 
-print("[italic blue]\nWelcome to My TODO_list")
+print('Welcome to My TODO_list')
 user = os.path.expanduser('~/TODO_list')
 
 instructions = "\nOptions: \n-Enter a to add new task. \n-Enter c to mark item as completed. \n-Enter d to delete items. \n-Enter q to quit. "
 todo_list = []
+sub_list = ["*"]
 
 def open_list ():
     global todo_list
@@ -19,10 +22,14 @@ def open_list ():
 
 def view_list():
     open_list()
+    print("\nList:")
+    x = range(len(todo_list))
     for task in range(len(todo_list)):
-        print("\nList:")
-        print(task +1,end =". ")
-        print(todo_list[task])
+        if todo_list[0].endswith('*') :
+            del todo_list[0]
+        else:
+            print(task + 1,end =". ")
+            print(todo_list[task])
 
 def list_mod ():
     with open(user + ".txt", newline='\n', mode='w') as f:
@@ -45,8 +52,8 @@ while i:
     elif user_in == 'c':
        try: 
         int_list_item = int(input("Which index do you want to mark as completed? "))
-        c = (" completed")
-        todo_list[int_list_item-1] = todo_list[int_list_item-1] + c
+        c = ("[italic green]*")
+        todo_list[int_list_item-1] = (c + todo_list[int_list_item - 1] + c)
         list_mod()
        except IndexError:
             print("\nIndex is out of range") 
