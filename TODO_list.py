@@ -9,7 +9,6 @@ user = os.path.expanduser('~/TODO_list')
 
 instructions = "\nOptions: \n-Enter a to add new task. \n-Enter c to mark item as completed. \n-Enter d to delete items. \n-Enter q to quit. "
 todo_list = []
-sub_list = ["*"]
 
 def open_list ():
     global todo_list
@@ -20,16 +19,22 @@ def open_list ():
     except FileNotFoundError:
         open(user + ".txt", mode='w')
 
-def view_list():
-    open_list()
-    print("\nList:")
-    x = range(len(todo_list))
+def clr_completed():
     for task in range(len(todo_list)):
         if todo_list[0].endswith('*') :
             del todo_list[0]
-        else:
-            print(task + 1,end =". ")
-            print(todo_list[task])
+def page_num():
+    x = int(input("which page do you wanna see? "))
+    x = x*15
+    return x
+    
+def view_list():
+    open_list()
+    print("\nList:")
+    clr_completed()
+    for task in range(page_num()):
+        print(task + 1,end =". ")
+        print(todo_list[task])
 
 def list_mod ():
     with open(user + ".txt", newline='\n', mode='w') as f:
