@@ -24,17 +24,22 @@ def clr_completed():
         if todo_list[0].endswith('*') :
             del todo_list[0]
 def page_num():
-    x = int(input("which page do you wanna see? "))
-    x = x*15
-    return x
+    L = int(input("which page do you wanna see? "))
+    L = L*15
+    return L
     
 def view_list():
     open_list()
-    print("\nList:")
     clr_completed()
-    for task in range(page_num()):
-        print(task + 1,end =". ")
-        print(todo_list[task])
+#    L = int(input("page number: "))
+#    L = L * 15
+    L = page_num()
+    print("\nList:")
+    for j  in range(len(todo_list[L-15:L:])):
+            print(j + (L-14),end =". ")
+            print(todo_list[j + (L-15)])
+        
+    
 
 def list_mod ():
     with open(user + ".txt", newline='\n', mode='w') as f:
