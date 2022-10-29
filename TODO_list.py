@@ -7,7 +7,8 @@ from os import system
 print('Welcome to My TODO_list')
 user = os.path.expanduser('~/TODO_list')
 
-instructions = "\nOptions: \n-Enter a to add new task. \n-Enter c to mark item as completed. \n-Enter d to delete items. \n-Enter q to quit. "
+instructions = "\nOptions: \n1) Add new task. 2) Mark as completed. 3) Delete task. 4) Change page. 5) Quit. "
+print(instructions)
 todo_list = []
 
 def open_list ():
@@ -24,20 +25,52 @@ def clr_completed():
         if todo_list[0].endswith('*') :
             del todo_list[0]
 def page_num():
-    L = int(input("which page do you wanna see? "))
-    L = L*15
-    return L
-    
-def view_list():
+    while True:
+        try:
+            L = int(input("which page do you wanna see? "))
+            L = L*15
+            return L
+        
+        except ValueError:
+            print ("Please enter a valid integer")
+            continue
+        else:
+            break
+def first15():
     open_list()
     clr_completed()
-#    L = int(input("page number: "))
-#    L = L * 15
-    L = page_num()
+    L = 15
     print("\nList:")
-    for j  in range(len(todo_list[L-15:L:])):
+    if (L - 14) <= len(todo_list):
+        for j  in range(len(todo_list[L-15:L:])):
             print(j + (L-14),end =". ")
             print(todo_list[j + (L-15)])
+first15()
+
+def countTasks():
+    open_list()
+    print(f"\nThere are {len(todo_list)} tasks.")
+countTasks()
+    
+def view_list():
+    while True:
+        open_list()
+        clr_completed()
+        L = page_num()
+        print("\nList:")
+        if (L - 14) <= len(todo_list):
+            for j  in range(len(todo_list[L-15:L:])):
+                print(j + (L-14),end =". ")
+                print(todo_list[j + (L-15)])
+            break
+        elif (L - 15) > len(todo_list):
+            print("Not available")
+            
+                
+            
+#    except ValueError:
+#         raise ValueError("Enter a valid integer")
+        
         
     
 
@@ -49,39 +82,56 @@ def list_mod ():
 i = True   
 
 while i:
-    print(instructions)
     view_list()
-    user_in = input("\nEnter your option: ").lower()
-
-    if user_in == 'a':
-        open_list()
-        task = input("Type the new task: ")
-        todo_list.append(task)
-        list_mod()
-
-    elif user_in == 'c':
-       try: 
-        int_list_item = int(input("Which index do you want to mark as completed? "))
-        c = ("[italic green]*")
-        todo_list[int_list_item-1] = (c + todo_list[int_list_item - 1] + c)
-        list_mod()
-       except IndexError:
-            print("\nIndex is out of range") 
-       except ValueError:
-           print("\nEnter an integer")
-            
-    elif user_in == 'd':
+    print(instructions)
+    while True:
         try:
-            del_task_index = int(input("Which index do you want to delete? "))
-            todo_list.pop(del_task_index -1)
-            list_mod()
+            user_in = int(input("\nEnter your option: "))
+            if user_in == 1:
+                try:
+                    open_list()
+                    task = input("Type the new task: ")
+                    todo_list.append(task)
+                    list_mod()
+                    break
+                except IndexError:
+                    print("\nIndex is out of range") 
+                except ValueError:
+                    print("\nEnter an integer")
+
+            elif user_in == 2:
+                try: 
+                    int_list_item = int(input("Which index do you want to mark as completed? "))
+                    c = ("[italic green]*")
+                    todo_list[int_list_item-1] = (c + todo_list[int_list_item - 1] + c)
+                    list_mod()
+                    break
+                except IndexError:
+                    print("\nIndex is out of range") 
+                except ValueError:
+                    print("\nEnter a task number")
+            
+            elif user_in == 3:
+                try:
+                    del_task_index = int(input("Which index do you want to delete? "))
+                    todo_list.pop(del_task_index -1)
+                    list_mod()
+                    break
+                except IndexError:
+                    print("\nIndex is out of range")
+                except ValueError:
+                    print("\nEnter an integer")
+            elif user_in == 4:
+                break
+            
+            elif user_in == 5:
+                exit_in = input("\nDo you want to exit? (y/n): ")
+                if exit_in == 'y':
+                    print("Good Bye")
+                    quit()
         except IndexError:
             print("\nIndex is out of range")
+            continue
         except ValueError:
-            print("\nEnter an integer")
-            
-    elif user_in == 'q':
-        exit_in = input("\nDo you want to exit? (y/n): ")
-        if exit_in == 'y':
-            print("Good Bye")
-            quit()
+            print("\nEnter an option")
+            continue
