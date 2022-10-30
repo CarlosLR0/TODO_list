@@ -1,3 +1,21 @@
+#TODO Application
+#
+#Main goals:
+#-TUI, REPL.
+#-Add, list tasks, able to delete completed task.
+#-Persist across runs? stores previous data?
+#-Every user gets their own list.
+#-Editable storage format?
+#-All tasks will be entered by the user.
+#-User friendly, no memorization (no complicated commands to work with?).
+#-Auto recall or prompt recall.
+#-Report total # of tasks.
+#Printing the list is default behaviour
+# No more than 15 items in default printing
+#save completed tasks
+#show completed tasks
+#Completed tasks @ the beginning of the list shall be deleted
+
 from rich import print
 from rich.console import Console
 from rich.text import Text
@@ -66,14 +84,6 @@ def view_list():
         elif (L - 15) > len(todo_list):
             print("Not available")
             
-                
-            
-#    except ValueError:
-#         raise ValueError("Enter a valid integer")
-        
-        
-    
-
 def list_mod ():
     with open(user + ".txt", newline='\n', mode='w') as f:
         f.write('\n'.join(str(e) for e in todo_list))
